@@ -27,7 +27,7 @@ const {
 // Обрабатываем GET-запрос с роутом '/users'
 usersRouter.delete('/users/:id', checkAuth, findUserById, deleteUser, sendUserDeleted)
 
-usersRouter.post('/users', findAllUsers, createUser, sendUserCreated)
+usersRouter.post('/users', findAllUsers,checkIsUserExists,checkEmptyNameAndEmailAndPassword,hashPassword, createUser, sendUserCreated)
 
 usersRouter.put(
 	'/users/:id',
