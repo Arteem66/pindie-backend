@@ -13,6 +13,7 @@ const {
 	checkIfCategoriesAvaliable,
 	checkIfUsersAreSafe,
 	checkIsGameExists,
+	checkIsVoteRequest
 } = require('../middlewares/games')
 const {
 	sendAllGames,
@@ -26,6 +27,7 @@ gamesRouter.delete('/games/:id', checkAuth, findGameById, deleteGame, sendGameDe
 gamesRouter.put(
 	'/games/:id',
 	findGameById,
+	checkIsVoteRequest,
 	checkIfUsersAreSafe,
 	checkIfCategoriesAvaliable,
 	checkEmptyFields,
