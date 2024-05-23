@@ -1,8 +1,8 @@
 const allowedCors = [
 	'https://pindiefrontsaldnevo.nomoredomainswork.ru',
-	'localhost:3000',
-	'localhost:3001',
-	'localhost:27017/pindie'
+	'http://localhost:3000',
+	'http://localhost:3001',
+	'localhost:27017/pindie',
 ]
 
 function cors(req, res, next) {
