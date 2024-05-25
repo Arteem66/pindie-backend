@@ -2,7 +2,7 @@
 
 // Импортируем модель
 const categories = require('../models/category')
-const { merge } = require('../routes/auth')
+// const { merge } = require('../routes/auth')
 
 const findAllCategories = async (req, res, next) => {
 	// По GET-запросу на эндпоинт /categories найдём все документы категорий

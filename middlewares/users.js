@@ -1,9 +1,14 @@
-// Файл middlewares/users.js
-
-// Импортируем модель
 const users = require('../models/user')
+const bcrypt = require('bcryptjs')
 
 const findAllUsers = async (req, res, next) => {
+	console.log('GET /api/users')
+	req.usersArray = await users.find({}, { password: 0 })
+	next()
+}
+
+const findUserById = async (req, res, next) => {
+	console.log('GET /api/users/:id')
 	try {
 		req.user = await users.findById(req.params.id, { password: 0 })
 		next()
@@ -13,32 +18,17 @@ const findAllUsers = async (req, res, next) => {
 }
 
 // middlewares/users.js
-const findUserById = async (req, res, next) => {
-	console.log('GET /users/:id')
-	try {
-		req.user = await users.findById(req.params.id)
-		next()
-	} catch (error) {
-		res.setHeader('Content-Type', 'application/json')
-		res.status(404).send(JSON.stringify({ message: 'Пользователь не найден' }))
-	}
-}
-
-// middlewares/users.js
 const createUser = async (req, res, next) => {
-	console.log('POST /users')
-	try {
-		console.log(req.body)
-		req.user = await users.create(req.body)
-		next()
-	} catch (error) {
-		res.setHeader('Content-Type', 'application/json')
-		res
-			.status(400)
-			.send(JSON.stringify({ message: 'Ошибка создания пользователя' }))
-	}
-}
-
+  console.log("POST /users");
+  try {
+    console.log(req.body);
+    req.user = await users.create(req.body);
+    next();
+  } catch (error) {
+    res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Ошибка создания пользователя" }));
+  }
+};
 
 const updateUser = async (req, res, next) => {
 	try {

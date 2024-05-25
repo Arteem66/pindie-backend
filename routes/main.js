@@ -1,5 +1,6 @@
 // routes/main.js
 const mainRoute = require('express').Router()
+const fs = require('fs');
 
 mainRoute.get('/', (req, res) => {
 	fs.readFile('../public/index.html', 'utf-8').then(data => {

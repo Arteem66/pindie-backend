@@ -16,11 +16,11 @@ connectToDatabase()
 
 app.use(
 	cors,
-	bodyParser.json(),
 	cookieParser(),
-	express.static(path.join(__dirname, 'public')),
+	bodyParser.json(),
 	apiRouter,
-	pagesRouter
+	pagesRouter,
+	express.static(path.join(__dirname, 'public')),
 )
 
 app.listen(PORT)

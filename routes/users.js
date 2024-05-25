@@ -10,10 +10,10 @@ const {
 	updateUser,
 	deleteUser,
 	checkIsUserExists,
-	checkIfUsersAreSafe,
 	checkEmptyNameAndEmailAndPassword,
 	checkEmptyNameAndEmail,
 	hashPassword,
+	// checkIfUsersAreSafe,
 } = require('../middlewares/users')
 const {
 	sendAllUsers,
@@ -24,19 +24,30 @@ const {
 	sendMe
 } = require('../controllers/users')
 
-// Обрабатываем GET-запрос с роутом '/users'
-usersRouter.delete('/users/:id', checkAuth, findUserById, deleteUser, sendUserDeleted)
-
-usersRouter.post('/users', findAllUsers,checkIsUserExists,checkEmptyNameAndEmailAndPassword,hashPassword, createUser, sendUserCreated)
-
+// routes/users.js
+usersRouter.post(
+  "/users",
+  findAllUsers,
+  checkIsUserExists,
+  checkEmptyNameAndEmailAndPassword,
+  checkAuth,
+  hashPassword,
+  createUser,
+  sendUserCreated
+);
 usersRouter.put(
-	'/users/:id',
-	checkEmptyNameAndEmail,
-	checkIfUsersAreSafe,
-	checkAuth,
-	updateUser,
-	sendUserUpdated
-)
+  "/users/:id",
+  checkEmptyNameAndEmail,
+  checkAuth,
+  updateUser,
+  sendUserUpdated
+);
+usersRouter.delete(
+  "/users/:id",
+  checkAuth,
+  deleteUser,
+  sendUserDeleted
+);
 usersRouter.get('/me', checkAuth, sendMe)
 usersRouter.get('/users/:id', findUserById, sendUserById)
 usersRouter.get('/users', findAllUsers, sendAllUsers)

@@ -1,7 +1,3 @@
-// Файл middlewares/games.js
-
-// Импортируем модель
-// Возможно надо game заменить на games
 const games = require('../models/game')
 
 const findAllGames = async (req, res, next) => {

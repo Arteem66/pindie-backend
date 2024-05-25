@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const authRouter = require('../routes/auth')
+// const authRouter = require('../routes/auth')
 
 const checkAuth = (req, res, next) => {
 	const { authorization } = req.headers
@@ -15,12 +15,14 @@ const checkAuth = (req, res, next) => {
   next()
 }
 
+// Импорты и другие миддлвары
+
 const checkCookiesJWT = (req, res, next) => {
-	if (!req.cookies.jwt) {
-		return res.redirect('/')
-	}
-	req.headers.authorization = `Bearer ${req.cookies.jwt}`
-	next()
-} 
+  if (!req.cookies.jwt) {
+    return res.redirect("/");
+  }
+  req.headers.authorization = `Bearer ${req.cookies.jwt}`;
+  next();
+};
 
 module.exports = {checkAuth, checkCookiesJWT}
